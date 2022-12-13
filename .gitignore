@@ -12,6 +12,8 @@ target/
 .idea/workspace.xml
 .idea/vcs.xml
 .idea/misc.xml
+.idea/uiDesigner.xml
+.idea/inspectionProfiles/*
 
 *.iws
 *.iml
