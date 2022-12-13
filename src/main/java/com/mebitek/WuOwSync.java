@@ -1,3 +1,5 @@
+package com.mebitek;
+
 import com.mebitek.ibm.WundergroundService;
 import com.mebitek.ibm.bean.WundergroundCondition;
 import com.mebitek.openweather.OpenWeatherService;
