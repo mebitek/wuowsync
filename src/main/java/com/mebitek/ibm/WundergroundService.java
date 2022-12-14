@@ -3,6 +3,8 @@ package com.mebitek.ibm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mebitek.ibm.bean.WundergroundCondition;
 import com.mebitek.ibm.bean.WundergroundObservation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -10,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 public class WundergroundService {
 
+ private static Logger LOGGER = LoggerFactory.getLogger(WundergroundService.class);
  private final String stationId;
  private final String apiKey;
 
@@ -27,7 +30,7 @@ public class WundergroundService {
  }
 
  public WundergroundCondition getActualCondition() {
-
+  LOGGER.info("getting Weather Underground actual condition");
   String url = buildApiUrl();
 
   ResponseEntity<WundergroundObservation> responseEntity = restTemplate
@@ -36,6 +39,7 @@ public class WundergroundService {
   if (!responseEntity.getStatusCode().equals(HttpStatus.OK)) {
    throw new RuntimeException("Cannot get weather underground actual condition");
   }
+  LOGGER.info("getting Weather Underground actual condition: status code is {}", responseEntity.getStatusCode());
 
   if (responseEntity.getBody() == null) {
    throw new RuntimeException("Cannot get weather underground actual condition");
